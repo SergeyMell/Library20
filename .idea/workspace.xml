@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="56499ce5-913f-4672-bc7f-64a2b4b50d1f" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Development__library20.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Production__library20.xml" />
@@ -28,6 +29,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
     </list>
+=======
+    <list default="true" id="56499ce5-913f-4672-bc7f-64a2b4b50d1f" name="Default" comment="" />
+>>>>>>> Stashed changes
     <ignored path="library20.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -279,6 +283,22 @@
       <option name="number" value="Default" />
       <updated>1465417476306</updated>
     </task>
+<<<<<<< Updated upstream
+=======
+    <task id="LOCAL-00001" summary="Added and installed active admin gem">
+      <created>1465418863972</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1465418863972</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added and installed active admin gem">
+      <created>1465419429443</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1465419429443</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+>>>>>>> Stashed changes
     <servers />
   </component>
   <component name="ToolWindowManager">
