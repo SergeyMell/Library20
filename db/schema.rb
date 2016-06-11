@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611122401) do
+ActiveRecord::Schema.define(version: 20160611181411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,37 @@ ActiveRecord::Schema.define(version: 20160611122401) do
     t.string   "short_o"
     t.string   "imya"
     t.string   "otch"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_level4s", force: true do |t|
+    t.integer  "punkt_idi"
+    t.integer  "level_4_idi"
+    t.string   "level_4"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_obzors", force: true do |t|
+    t.integer  "n_from_razdel"
+    t.integer  "n_obzor"
+    t.string   "obzor_podst"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_punkts", force: true do |t|
+    t.integer  "n_from_obzor"
+    t.integer  "n_punct"
+    t.string   "punct_podst"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_razdels", force: true do |t|
+    t.integer  "n_razdel"
+    t.string   "razdel_podst"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

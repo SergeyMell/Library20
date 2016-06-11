@@ -1,4 +1,4 @@
-ActiveAdmin.register OldAuthor do
+ActiveAdmin.register OldRazdel do
 
   menu :parent => 'Old tables'
 
