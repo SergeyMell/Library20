@@ -28,4 +28,38 @@ class MigrationController < ApplicationController
     end
   end
 
+  def self.migrate_sections
+    OldPunkt.transaction do
+      OldPunkt.all.each do |old_punkt|
+        review = Review.where(old_idi: old_punkt.n_from_obzor).first
+        raise 'Review not found' if review.blank?
+
+        Section.create!(
+            title: old_punkt.punct_podst,
+            review_id: review.id,
+
+            old_idi: old_punkt.n_punct,
+            old_obzor_idi: old_punkt.n_from_obzor
+        )
+      end
+    end
+  end
+
+  def self.migrate_subsections
+    OldLevel4.transaction do
+      OldLevel4.all.each do |old_level4|
+        section = Section.where(old_idi: old_level4.punkt_idi).first
+        raise 'Section not found' if section.blank?
+
+        Subsection.create!(
+            title: old_level4.level_4,
+            section_id: section.id,
+
+            old_idi: old_level4.level_4_idi,
+            old_punkt_idi: old_level4.punkt_idi
+        )
+      end
+    end
+  end
+
 end
