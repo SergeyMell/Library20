@@ -5,6 +5,7 @@ class CreateAuthors < ActiveRecord::Migration
       t.string :last_name
       t.string :patronymic
 
+      t.integer :old_idi
       t.timestamps
     end
   end

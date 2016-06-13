@@ -62,4 +62,28 @@ class MigrationController < ApplicationController
     end
   end
 
+  def self.migrate_authors
+    OldAuthor.transaction do
+      OldAuthor.all.each do |old_author|
+
+        Author.create!(
+            first_name: old_author.imya || old_author.short_i,
+            last_name: old_author.author_name,
+            patronymic: old_author.otch || old_author.short_o,
+
+            old_idi: old_author.author_idi
+        )
+      end
+    end
+  end
+
+  def self.migration
+    migrate_chapters
+    migrate_reviews
+    migrate_sections
+    migrate_subsections
+
+    migrate_authors
+  end
+
 end

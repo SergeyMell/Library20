@@ -1,7 +1,8 @@
 class Author < ActiveRecord::Base
 
-  validates_presence_of :last_name
-  validates_uniqueness_of :last_name
+  # Uncomment these validations in future
+  # validates_presence_of :last_name
+  # validates_uniqueness_of :last_name
 
   def first_name_initial
     if first_name[0]
