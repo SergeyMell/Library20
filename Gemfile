@@ -30,6 +30,7 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 
 gem 'active_admin_import'
+gem 'paperclip', '~> 3.5.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

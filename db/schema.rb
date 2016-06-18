@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160611200749) do
+ActiveRecord::Schema.define(version: 20160618214802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,23 @@ ActiveRecord::Schema.define(version: 20160611200749) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "article_files", force: true do |t|
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  create_table "articles", force: true do |t|
+    t.string   "title"
+    t.integer  "old_idi"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "authors", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -61,6 +78,43 @@ ActiveRecord::Schema.define(version: 20160611200749) do
   create_table "chapters", force: true do |t|
     t.string   "title"
     t.integer  "old_idi"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_articles", force: true do |t|
+    t.integer  "author_idi"
+    t.integer  "article_idi"
+    t.integer  "article_id_old"
+    t.string   "coauthors"
+    t.string   "journal"
+    t.string   "nazvanie"
+    t.string   "year"
+    t.string   "shapka1"
+    t.string   "shapka2"
+    t.string   "month_tp"
+    t.string   "que"
+    t.boolean  "vpechati"
+    t.string   "status"
+    t.string   "type_art"
+    t.string   "http_address"
+    t.string   "person"
+    t.string   "word_abs"
+    t.string   "word_abstr"
+    t.string   "pdf_abstr"
+    t.string   "word"
+    t.string   "word2"
+    t.string   "pdf"
+    t.string   "browser_file"
+    t.string   "packet"
+    t.string   "transl"
+    t.date     "checked_up"
+    t.text     "resume"
+    t.boolean  "ref"
+    t.boolean  "xerox"
+    t.text     "mistake"
+    t.string   "email"
+    t.string   "file"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
