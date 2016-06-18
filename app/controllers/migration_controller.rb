@@ -1,5 +1,7 @@
 class MigrationController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
+
   def self.migrate_chapters
     OldRazdel.all.each do |old_razdel|
       Chapter.create!(
@@ -84,6 +86,21 @@ class MigrationController < ApplicationController
     migrate_subsections
 
     migrate_authors
+  end
+
+  def attach_files
+
+  end
+
+  def attach_files_action
+    params[:file_list].each do |file|
+      article_id = File.basename(file.original_filename, '.*')
+      # ArticleFile.create(article_id: article_id, file: file)
+    end
+
+    render json: {
+        success: 0
+    }
   end
 
 end
