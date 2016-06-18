@@ -79,6 +79,19 @@ class MigrationController < ApplicationController
     end
   end
 
+  def self.migrate_articles_base
+    OldArticle.transaction do
+      OldArticle.all.each do |old_article|
+
+        Article.create!(
+                   title: old_article.nazvanie,
+                   old_idi: old_article.article_idi
+        )
+
+      end
+    end
+  end
+
   def self.migration
     migrate_chapters
     migrate_reviews
@@ -86,6 +99,8 @@ class MigrationController < ApplicationController
     migrate_subsections
 
     migrate_authors
+
+    migrate_articles_base
   end
 
   def attach_files
