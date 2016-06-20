@@ -4,6 +4,10 @@ class CreateArticles < ActiveRecord::Migration
       t.string :title
       t.integer :old_idi
 
+      t.integer :author_id
+      t.string :year
+
+
       t.timestamps
     end
   end

@@ -9,6 +9,7 @@ class MigrationController < ApplicationController
                  old_idi: old_razdel.n_razdel
       )
     end
+    true
   end
 
   def self.migrate_reviews
@@ -28,6 +29,7 @@ class MigrationController < ApplicationController
       end
 
     end
+    true
   end
 
   def self.migrate_sections
@@ -45,6 +47,7 @@ class MigrationController < ApplicationController
         )
       end
     end
+    true
   end
 
   def self.migrate_subsections
@@ -62,6 +65,7 @@ class MigrationController < ApplicationController
         )
       end
     end
+    true
   end
 
   def self.migrate_authors
@@ -69,7 +73,7 @@ class MigrationController < ApplicationController
       OldAuthor.all.each do |old_author|
 
         Author.create!(
-            first_name: old_author.imya || old_author.short_i,
+            first_name: old_author.imya && old_author.imya != '.' || old_author.short_i,
             last_name: old_author.author_name,
             patronymic: old_author.otch || old_author.short_o,
 
@@ -77,6 +81,7 @@ class MigrationController < ApplicationController
         )
       end
     end
+    true
   end
 
   def self.migrate_articles_base
@@ -85,11 +90,29 @@ class MigrationController < ApplicationController
 
         Article.create!(
                    title: old_article.nazvanie,
+                   year: old_article.year,
                    old_idi: old_article.article_idi
         )
 
       end
     end
+    true
+  end
+
+  def self.connect_authors_to_articles
+    Article.transaction do
+      Article.all.each do |article|
+        old_article = OldArticle.where(article_idi: article.old_idi).first
+        raise 'Article not found' if old_article.blank?
+
+        author = Author.where(old_idi: old_article.author_idi).first
+        raise 'Author not found' if author.blank?
+
+        article.author_id = author.id
+        article.save!
+      end
+    end
+    true
   end
 
   def self.migration
@@ -101,7 +124,10 @@ class MigrationController < ApplicationController
     migrate_authors
 
     migrate_articles_base
+    connect_authors_to_articles
   end
+
+  # Additional actions
 
   def attach_files
 

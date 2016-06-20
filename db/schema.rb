@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20160618214802) do
   create_table "articles", force: true do |t|
     t.string   "title"
     t.integer  "old_idi"
+    t.integer  "author_id"
+    t.string   "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
