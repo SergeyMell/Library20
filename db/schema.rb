@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160618214802) do
+ActiveRecord::Schema.define(version: 20160620190127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,38 @@ ActiveRecord::Schema.define(version: 20160618214802) do
     t.integer  "n_from_razdel"
     t.integer  "n_obzor"
     t.string   "obzor_podst"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_position1s", force: true do |t|
+    t.integer  "article_idi"
+    t.integer  "position1_idi"
+    t.string   "position1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_position2s", force: true do |t|
+    t.integer  "position1_idi"
+    t.integer  "position2_idi"
+    t.string   "position2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_position3s", force: true do |t|
+    t.integer  "position2_idi"
+    t.integer  "position3_idi"
+    t.string   "position3"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "old_position4s", force: true do |t|
+    t.integer  "position3_idi"
+    t.integer  "position4_idi"
+    t.string   "position4"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
