@@ -3,7 +3,7 @@
 
   <% @articles.each do |article| %>
       <div class="col-xs-11">
-        <em class="ita"><%= "#{article.author.display_name}" %></em>
+        <em class="ita"><%= "#{article.author.display_name}, #{OldArticle.where(article_idi: article.old_idi).first.coauthors}" %></em>
         <h5><%= article.title %></h5>
         <hr>
       </div>
