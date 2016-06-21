@@ -1,0 +1,16 @@
+<div class="row">
+  <h1>Список статей</h1>
+
+  <% @articles.each do |article| %>
+      <div class="col-xs-11">
+        <em class="ita"><%= "#{article.author.display_name}" %></em>
+        <h5><%= article.title %></h5>
+        <hr>
+      </div>
+  <% end %>
+
+  <div class="col-xs-10 col-xs-offset-1 text-center">
+    <%= paginate @articles %>
+  </div>
+
+</div>
