@@ -1,16 +1,20 @@
-<div class="row">
+<div class="row" xmlns="http://www.w3.org/1999/html">
   <div class="col-xs-12">
     <h1>Список статей</h1>
   </div>
 
-
-  <% @articles.each do |article| %>
-      <div class="col-xs-12">
-        <em><%= "#{article.author.display_name}, #{OldArticle.where(article_idi: article.old_idi).first.coauthors}" %></em>
-        <h5><%= article.title %></h5>
-        <hr>
-      </div>
-  <% end %>
+  <div class="col-xs-12">
+    <table class="table table-striped">
+    <% @articles.each do |article| %>
+        <tr>
+          <td>
+            <em><%= "#{article.author.display_name}, #{OldArticle.where(article_idi: article.old_idi).first.coauthors}" %></em><br>
+            <b><%= article.title %></b>
+          </td>
+        </tr>
+    <% end %>
+    </table>
+  </div>
 
   <div class="col-xs-10 col-xs-offset-1 text-center">
     <%= paginate @articles %>
