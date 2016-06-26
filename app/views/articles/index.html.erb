@@ -1,3 +1,10 @@
+<style>
+  form button {
+    text-shadow: none;
+  }
+</style>
+
+
 <div class="row">
   <div class="col-xs-12">
     <h1>Список статей</h1>
@@ -8,24 +15,33 @@
       <%= select_tag 'chapter_id',
                      options_from_collection_for_select(@chapters, 'id', 'title', params[:chapter_id]),
                      prompt: 'Все',
+                     class: 'selectpicker',
                      id: 'chapter_selector' %>
     </div>
 
     <div class="col-xs-12">
       <%= select_tag 'review_id',
                      options_from_collection_for_select(@reviews, 'id', 'title', params[:review_id]),
+                     prompt: 'Все',
+                     class: 'selectpicker',
                      id: 'review_selector' %>
     </div>
 
     <div class="col-xs-12">
       <%= select_tag 'section_id',
                      options_from_collection_for_select(@sections, 'id', 'title', params[:section_id]),
+                     prompt: 'Все',
+                     class: 'selectpicker',
+                     title: 'Все',
                      id: 'section_selector' %>
     </div>
 
     <div class="col-xs-12">
       <%= select_tag 'subsection_id',
                      options_from_collection_for_select(@subsections, 'id', 'title', params[:subsection_id]),
+                     prompt: 'Все',
+                     class: 'selectpicker',
+                     title: 'Все',
                      id: 'subsection_selector' %>
     </div>
 
@@ -69,6 +85,7 @@
     $.post(apiUrl, data,
         function() {
           $(triggerSelector).change();
+          $(triggerSelector).selectpicker('refresh');
         }
     );
   }
