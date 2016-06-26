@@ -16,5 +16,3 @@
 //= require turbolinks
 //= require 'bootstrap-select'
 //= require_tree .
-
-$('select').selectpicker();
