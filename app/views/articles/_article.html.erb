@@ -1,0 +1,6 @@
+<tr>
+    <td>
+        <em><%= "#{article.author.display_name}, #{OldArticle.where(article_idi: article.old_idi).first.coauthors}"%></em><br>
+        <b><%= article.title %></b>
+    </td>
+</tr>

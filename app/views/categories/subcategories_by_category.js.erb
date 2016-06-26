@@ -1,0 +1,4 @@
+$("<%= selector %>")
+    .val('')
+    .empty()
+    .append("<%= escape_javascript(render(:partial =>'categories/option', collection: @options)) %>");

@@ -1,18 +1,43 @@
-<div class="row" xmlns="http://www.w3.org/1999/html">
+<div class="row">
   <div class="col-xs-12">
     <h1>Список статей</h1>
   </div>
 
+  <form method="GET">
+    <div class="col-xs-12">
+      <%= select_tag 'chapter_id',
+                     options_from_collection_for_select(@chapters, 'id', 'title', params[:chapter_id]),
+                     prompt: 'Все',
+                     id: 'chapter_selector' %>
+    </div>
+
+    <div class="col-xs-12">
+      <%= select_tag 'review_id',
+                     options_from_collection_for_select([], 'id', 'title', params[:review_id]),
+                     id: 'review_selector' %>
+    </div>
+
+    <div class="col-xs-12">
+      <%= select_tag 'section_id',
+                     options_from_collection_for_select([], 'id', 'title', params[:section_id]),
+                     id: 'section_selector' %>
+    </div>
+
+    <div class="col-xs-12">
+      <%= select_tag 'subsection_id',
+                     options_from_collection_for_select([], 'id', 'title', params[:subsection_id]),
+                     id: 'subsection_selector' %>
+    </div>
+
+    <div class="col-xs-12">
+      <button type="submit" class="btn btn-success">Найти</button>
+    </div>
+
+  </form>
+
   <div class="col-xs-12">
     <table class="table table-striped">
-    <% @articles.each do |article| %>
-        <tr>
-          <td>
-            <em><%= "#{article.author.display_name}, #{OldArticle.where(article_idi: article.old_idi).first.coauthors}" %></em><br>
-            <b><%= article.title %></b>
-          </td>
-        </tr>
-    <% end %>
+      <%= render @articles %>
     </table>
   </div>
 
@@ -21,3 +46,33 @@
   </div>
 
 </div>
+
+<script type="text/javascript" charset="utf-8">
+
+  var chapterSelector = $('#chapter_selector');
+  var reviewSelector = $('#review_selector');
+  var sectionSelector = $('#section_selector');
+
+  chapterSelector.change(function() {
+    getSubcategoriesByCategory('/api/reviews_by_chapter', {'chapter_id': this.value}, '#review_selector');
+  });
+
+  reviewSelector.change(function() {
+    getSubcategoriesByCategory('/api/sections_by_review', {'review_id': this.value}, '#section_selector');
+  });
+
+  sectionSelector.change(function() {
+    getSubcategoriesByCategory('/api/subsections_by_section', {'section_id': this.value}, null);
+  });
+
+  function getSubcategoriesByCategory(apiUrl, data, triggerSelector) {
+    $.post(apiUrl, data,
+        function() {
+          $(triggerSelector).change();
+        }
+    );
+  }
+
+  chapterSelector.change();
+
+</script>

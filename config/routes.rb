@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   root 'articles#index'
 
   # Example of regular route:
-    get 'attach_files' => 'migration#attach_files'
-    post 'attach_files' => 'migration#attach_files_action'
+  get 'attach_files' => 'migration#attach_files'
+  post 'attach_files' => 'migration#attach_files_action'
+
+  post 'api/reviews_by_chapter' => 'categories#reviews_by_chapter'
+  post 'api/sections_by_review' => 'categories#sections_by_review'
+  post 'api/subsections_by_section' => 'categories#subsections_by_section'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -49,6 +53,7 @@ Rails.application.routes.draw do
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
+
 
   # Example resource route within a namespace:
   #   namespace :admin do
