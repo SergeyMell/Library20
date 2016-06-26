@@ -5,8 +5,8 @@ class MigrationController < ApplicationController
   def self.migrate_chapters
     OldRazdel.all.each do |old_razdel|
       Chapter.create!(
-                 title: old_razdel.razdel_podst,
-                 old_idi: old_razdel.n_razdel
+          title: old_razdel.razdel_podst,
+          old_idi: old_razdel.n_razdel
       )
     end
     true
@@ -20,11 +20,11 @@ class MigrationController < ApplicationController
         raise 'Chapter not found' if chapter.blank?
 
         Review.create!(
-                  title: old_obzor.obzor_podst,
-                  chapter_id: chapter.id,
+            title: old_obzor.obzor_podst,
+            chapter_id: chapter.id,
 
-                  old_razdel_idi: old_obzor.n_from_razdel,
-                  old_idi: old_obzor.n_obzor
+            old_razdel_idi: old_obzor.n_from_razdel,
+            old_idi: old_obzor.n_obzor
         )
       end
 
@@ -89,9 +89,9 @@ class MigrationController < ApplicationController
       OldArticle.all.each do |old_article|
 
         Article.create!(
-                   title: old_article.nazvanie,
-                   year: old_article.year,
-                   old_idi: old_article.article_idi
+            title: old_article.nazvanie,
+            year: old_article.year,
+            old_idi: old_article.article_idi
         )
 
       end
@@ -115,6 +115,87 @@ class MigrationController < ApplicationController
     true
   end
 
+  def self.connect_articles_to_chapters
+    OldPosition1.transaction do
+      OldPosition1.all.each do |position1|
+        article = Article.where(old_idi: position1.article_idi).first
+        chapter = Chapter.where(title: position1.position1).first
+
+        if !article.blank? && !chapter.blank?
+          article.chapters << chapter
+          article.save!
+        end
+      end
+    end
+    true
+  end
+
+  def self.connect_articles_to_reviews
+    OldPosition2.transaction do
+      OldPosition2.all.each do |position2|
+        review = Review.where(title: position2.position2).first
+
+        position1 = OldPosition1.where(position1_idi: position2.position1_idi).first
+        next if position1.blank?
+
+        article = Article.where(old_idi: position1.article_idi).first
+
+        if !article.blank? && !review.blank?
+          article.reviews << review
+          article.save!
+        end
+      end
+    end
+    true
+  end
+
+  def self.connect_articles_to_sections
+    OldPosition3.transaction do
+      OldPosition3.all.each do |position3|
+        section = Section.where(title: position3.position3).first
+
+        position2 = OldPosition2.where(position2_idi: position3.position2_idi).first
+        next if position2.blank?
+
+        position1 = OldPosition1.where(position1_idi: position2.position1_idi).first
+        next if position1.blank?
+
+        article = Article.where(old_idi: position1.article_idi).first
+
+        if !article.blank? && !section.blank?
+          article.sections << section
+          article.save!
+        end
+      end
+    end
+    true
+  end
+
+  def self.connect_articles_to_subsections
+    OldPosition4.transaction do
+      OldPosition4.all.each do |position4|
+        subsection = Subsection.where(title: position4.position4).first
+
+        position3 = OldPosition3.where(position3_idi: position4.position3_idi).first
+        next if position3.blank?
+
+        position2 = OldPosition2.where(position2_idi: position3.position2_idi).first
+        next if position2.blank?
+
+        position1 = OldPosition1.where(position1_idi: position2.position1_idi).first
+        next if position1.blank?
+
+        article = Article.where(old_idi: position1.article_idi).first
+
+        if !article.blank? && !subsection.blank?
+          article.subsections << subsection
+          article.save!
+        end
+      end
+    end
+    true
+  end
+
   def self.migration
     migrate_chapters
     migrate_reviews
@@ -125,6 +206,11 @@ class MigrationController < ApplicationController
 
     migrate_articles_base
     connect_authors_to_articles
+
+    connect_articles_to_chapters
+    connect_articles_to_reviews
+    connect_articles_to_sections
+    connect_articles_to_subsections
   end
 
   # Additional actions
