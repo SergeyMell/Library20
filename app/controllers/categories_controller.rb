@@ -8,7 +8,8 @@ class CategoriesController < ApplicationController
     raise 'Chapter not found' if chapter.blank?
     render_options(chapter.reviews, '#review_selector')
   rescue => e
-    render status: 500, json: {message: e.message}
+    render_options([], '#review_selector')
+
   end
 
   def sections_by_review
@@ -16,7 +17,7 @@ class CategoriesController < ApplicationController
     raise 'Review not found' if review.blank?
     render_options(review.sections, '#section_selector')
   rescue => e
-    render status: 500, json: {message: e.message}
+    render_options([], '#section_selector')
   end
 
   def subsections_by_section
@@ -24,7 +25,7 @@ class CategoriesController < ApplicationController
     raise 'Section not found' if section.blank?
     render_options(section.subsections, '#subsection_selector')
   rescue => e
-    render status: 500, json: {message: e.message}
+    render_options([], '#subsection_selector')
   end
 
 end

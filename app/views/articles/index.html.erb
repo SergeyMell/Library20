@@ -13,19 +13,19 @@
 
     <div class="col-xs-12">
       <%= select_tag 'review_id',
-                     options_from_collection_for_select([], 'id', 'title', params[:review_id]),
+                     options_from_collection_for_select(@reviews, 'id', 'title', params[:review_id]),
                      id: 'review_selector' %>
     </div>
 
     <div class="col-xs-12">
       <%= select_tag 'section_id',
-                     options_from_collection_for_select([], 'id', 'title', params[:section_id]),
+                     options_from_collection_for_select(@sections, 'id', 'title', params[:section_id]),
                      id: 'section_selector' %>
     </div>
 
     <div class="col-xs-12">
       <%= select_tag 'subsection_id',
-                     options_from_collection_for_select([], 'id', 'title', params[:subsection_id]),
+                     options_from_collection_for_select(@subsections, 'id', 'title', params[:subsection_id]),
                      id: 'subsection_selector' %>
     </div>
 
@@ -72,7 +72,5 @@
         }
     );
   }
-
-  chapterSelector.change();
 
 </script>
