@@ -1,19 +1,21 @@
 ActiveAdmin.register Article do
 
-  permit_params :title
+  permit_params :title, chapter_ids: [], review_ids: [], section_ids: [], subsection_ids: []
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  form do |f|
+    f.inputs do
+      f.input :author
+      f.input :title
+      f.input :year
+
+      f.input :chapters, as: :select2_multiple, collection: Chapter.all
+      f.input :reviews, as: :select2_multiple, collection: Review.all
+      f.input :sections, as: :select2_multiple, collection: Section.all
+      f.input :subsections, as: :select2_multiple, collection: Subsection.all
+    end
+
+    f.actions
+  end
 
 
 end

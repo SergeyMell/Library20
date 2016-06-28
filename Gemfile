@@ -35,6 +35,9 @@ gem 'paperclip', '~> 3.5.2'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 
+gem 'select2-rails'
+gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

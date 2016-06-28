@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
 
     @articles = @articles.joins(:author).where('lower(authors.last_name) LIKE ?', "%#{params[:author].mb_chars.downcase.to_s}%") unless params[:author].blank?
     @articles = @articles.where('lower(articles.title) LIKE ?', "%#{params[:title].mb_chars.downcase.to_s}%") unless params[:title].blank?
+    @articles = @articles.uniq
 
     @total_results = @articles.length
 

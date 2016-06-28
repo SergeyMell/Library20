@@ -14,7 +14,22 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :subsections
 
   def update_connections
-    puts 'article data'
-    puts self.chapters.inspect
+    self.subsections.each do |subsection|
+      self.sections << subsection.try(:section)
+    end
+
+    self.sections.each do |section|
+      self.reviews << section.try(:review)
+    end
+
+    self.reviews.each do |review|
+      self.chapters << review.try(:chapter)
+    end
+
+    self.subsections = self.subsections.uniq
+    self.sections = self.sections.uniq
+    self.reviews = self.reviews.uniq
+    self.chapters = self.chapters.uniq
   end
+
 end
