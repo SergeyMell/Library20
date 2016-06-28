@@ -4,6 +4,9 @@
   }
 </style>
 
+<div id="modal-container">
+
+</div>
 
 <div class="row">
   <div class="col-xs-12">
@@ -11,8 +14,6 @@
   </div>
 
   <form method="GET">
-
-
     <div class="col-xs-4" style="min-width: 250px;">
       <label for="chapter_id">Раздел</label><br>
       <%= select_tag 'chapter_id',
@@ -111,6 +112,10 @@
         }
     );
   }
+
+  $('tr').click(function() {
+    $.get('/articles/' + this.getAttribute('article-id'));
+  });
 
   $('select').selectpicker();
 
