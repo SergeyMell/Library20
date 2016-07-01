@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626171021) do
+ActiveRecord::Schema.define(version: 20160701201630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,9 @@ ActiveRecord::Schema.define(version: 20160626171021) do
     t.string   "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "journal_id"
+    t.string   "coauthors"
+    t.string   "publication_data"
   end
 
   create_table "articles_chapters", force: true do |t|
@@ -100,6 +103,12 @@ ActiveRecord::Schema.define(version: 20160626171021) do
   create_table "chapters", force: true do |t|
     t.string   "title"
     t.integer  "old_idi"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "journals", force: true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

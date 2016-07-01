@@ -9,16 +9,19 @@ class ArticlesController < ApplicationController
 
     @articles = @articles.joins(:author).where('lower(authors.last_name) LIKE ?', "%#{params[:author].mb_chars.downcase.to_s}%") unless params[:author].blank?
     @articles = @articles.where('lower(articles.title) LIKE ?', "%#{params[:title].mb_chars.downcase.to_s}%") unless params[:title].blank?
-    @articles = @articles.uniq
+    @articles = @articles.where(journal_id: params[:journal_id]) unless params[:journal_id].blank?
+    @articles = @articles.uniq.order(:title)
 
     @total_results = @articles.length
 
     @articles = @articles.page(params[:page]).per(10)
 
-    @chapters = Chapter.all
-    @reviews = Chapter.where(id: params[:chapter_id]).first.try(:reviews) || []
-    @sections = Review.where(id: params[:review_id]).first.try(:sections) || []
-    @subsections = Section.where(id: params[:section_id]).first.try(:subsections) || []
+    @chapters = Chapter.all.order(:title)
+    @reviews = Chapter.where(id: params[:chapter_id]).first.try(:reviews).try(:order, :title) || []
+    @sections = Review.where(id: params[:review_id]).first.try(:sections).try(:order, :title) || []
+    @subsections = Section.where(id: params[:section_id]).first.try(:subsections).try(:order, :title) || []
+
+    @journals = Journal.all.order(:title)
   end
 
   def show

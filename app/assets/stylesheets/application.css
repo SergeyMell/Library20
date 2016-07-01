@@ -14,3 +14,7 @@
  *= require_self
  *= require bootstrap-select
  */
+
+.btn-group.bootstrap-select {
+    width: calc(64% - 22px) !important;
+}

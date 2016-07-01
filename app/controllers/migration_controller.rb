@@ -93,7 +93,6 @@ class MigrationController < ApplicationController
             year: old_article.year,
             old_idi: old_article.article_idi
         )
-
       end
     end
     true
@@ -196,6 +195,27 @@ class MigrationController < ApplicationController
     true
   end
 
+  def self.migrate_article_fields
+    OldArticle.transaction do
+      OldArticle.all.each do |old_article|
+        article = Article.where(old_idi: old_article.article_idi).first
+        next if article.blank?
+
+        article.coauthors = old_article.coauthors
+        article.publication_data = old_article.month_tp
+
+        old_journal_title = old_article.journal
+        unless old_journal_title.blank?
+          old_journal_title = old_journal_title.gsub(/\s+/, ' ').strip
+
+          journal = Journal.find_or_create_by!(title: old_journal_title)
+          article.journal_id = journal.id
+        end
+        article.save
+      end
+    end
+  end
+
   def self.migration
     migrate_chapters
     migrate_reviews
@@ -221,8 +241,12 @@ class MigrationController < ApplicationController
 
   def attach_files_action
     params[:file_list].each do |file|
-      article_id = File.basename(file.original_filename, '.*')
-      # ArticleFile.create(article_id: article_id, file: file)
+      filename = File.basename(file.original_filename, '.*')
+      old_article_id = filename.match(/^\d+/).to_s.to_i
+      article = Article.where(old_idi: old_article_id).first
+      raise 'Article not found' if article.blank?
+
+      ArticleFile.create(article_id: article.id, file: file)
     end
 
     render json: {

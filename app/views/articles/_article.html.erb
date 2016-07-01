@@ -1,6 +1,7 @@
 <tr article-id="<%= article.id %>">
-    <td>
-        <em><%= "#{article.author.display_name}, #{OldArticle.where(article_idi: article.old_idi).first.coauthors}"%></em><br>
-        <b><%= article.title %></b>
-    </td>
+  <td>
+    <em><%= "#{article.author.display_name}, #{article.coauthors}" %></em><br>
+    <b><%= article.title %></b><br>
+    <%= "Доступно файлов: #{article.article_files.length}" %>
+  </td>
 </tr>

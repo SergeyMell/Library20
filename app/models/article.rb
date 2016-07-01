@@ -5,6 +5,7 @@ class Article < ActiveRecord::Base
   before_save :update_connections
 
   belongs_to :author
+  belongs_to :journal
 
   has_many :article_files
 

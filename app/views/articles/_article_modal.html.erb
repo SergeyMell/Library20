@@ -8,9 +8,13 @@
         </h4>
       </div>
       <div class="modal-body">
-        <%= @article.title %>
+        <%= @article.title %> <br>
+        <%= "#{@article.journal.title}. - #{@article.publication_data}" %>
       </div>
       <div class="modal-footer">
+        <% @article.article_files.each do |article_file| %>
+          <%= link_to(article_file.file.original_filename, article_file.file.url, :target => '_blank') %> <br>
+        <% end %>
       </div>
     </div>
   </div>
