@@ -1,7 +1,9 @@
 <tr article-id="<%= article.id %>">
   <td>
     <em><%= "#{article.author.display_name}, #{article.coauthors}" %></em><br>
+
     <b><%= article.title %></b><br>
+
     <%= "Доступно файлов: #{article.article_files.length}" %>
   </td>
 </tr>
