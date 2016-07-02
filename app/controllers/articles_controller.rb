@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @articles = Article.all
     @articles = @articles.joins(:chapters).where(chapters: {id: params[:chapter_id]}) unless params[:chapter_id].blank?

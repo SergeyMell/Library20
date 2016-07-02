@@ -3,6 +3,14 @@
     text-shadow: none;
   }
 </style>
+<div class="row">
+  <div class="col-xs-12 text-right" style="background-color: #EFEFEF;">
+    <%= "Вы зашли под учетной записью #{current_user.login}." %>
+    <strong>
+      <%= link_to('Выйти?', destroy_user_session_path, :method => :delete) %>
+    </strong>
+  </div>
+</div>
 
 <div id="modal-container">
 
