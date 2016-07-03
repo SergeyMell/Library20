@@ -33,6 +33,7 @@ gem 'active_admin_import'
 gem 'paperclip', '~> 3.5.2'
 
 gem 'twitter-bootstrap-rails'
+gem 'execjs'
 gem 'therubyracer'
 
 gem 'select2-rails'

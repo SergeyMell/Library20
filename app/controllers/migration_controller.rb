@@ -226,6 +226,7 @@ class MigrationController < ApplicationController
 
     migrate_articles_base
     connect_authors_to_articles
+    migrate_article_fields
 
     connect_articles_to_chapters
     connect_articles_to_reviews
