@@ -214,6 +214,20 @@ class MigrationController < ApplicationController
         article.save
       end
     end
+    true
+  end
+
+  def self.fix_symbols
+    Article.all.each do |article|
+      article.title = article.title.gsub("\t_x000d_\n", ' ').gsub(/\s+/, ' ') unless article.title.blank?
+      article.title = article.title.gsub('_x000d_', ' ').gsub(/\s+/, ' ') unless article.title.blank?
+      article.title = article.title.gsub('_x000f_', ' ').gsub(/\s+/, ' ') unless article.title.blank?
+      article.coauthors = article.coauthors.gsub("\t_x000d_\n", ' ').gsub(/\s+/, ' ') unless article.coauthors.blank?
+      article.coauthors = article.coauthors.gsub('_x000d_', ' ').gsub(/\s+/, ' ') unless article.coauthors.blank?
+      article.coauthors = article.coauthors.gsub('_x000f_', ' ').gsub(/\s+/, ' ') unless article.coauthors.blank?
+      article.save
+    end
+    true
   end
 
   def self.migration
@@ -227,6 +241,7 @@ class MigrationController < ApplicationController
     migrate_articles_base
     connect_authors_to_articles
     migrate_article_fields
+    fix_symbols
 
     connect_articles_to_chapters
     connect_articles_to_reviews
