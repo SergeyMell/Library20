@@ -38,7 +38,7 @@ gem 'therubyracer'
 gem 'select2-rails'
 gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 
-gem 'thin'
+gem 'thin', '1.7.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
