@@ -7,8 +7,12 @@ ActiveAdmin.register Article do
   form do |f|
     f.inputs do
       f.input :author
+      f.input :coauthors
+
       f.input :title
       f.input :year
+      f.input :publication_data
+      f.input :journal
 
       f.input :chapters, as: :select2_multiple, collection: Chapter.all
       f.input :reviews, as: :select2_multiple, collection: Review.all
