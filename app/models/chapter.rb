@@ -1,7 +1,7 @@
 class Chapter < ActiveRecord::Base
 
-  validates_presence_of :title, :old_idi
-  validates_uniqueness_of :title, :old_idi
+  validates_presence_of :title
+  validates_uniqueness_of :title
 
   has_many :reviews
 

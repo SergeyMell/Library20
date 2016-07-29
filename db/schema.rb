@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702135042) do
+ActiveRecord::Schema.define(version: 20160729070123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20160702135042) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
-    t.integer  "old_idi"
     t.integer  "author_id"
     t.string   "year"
     t.datetime "created_at"
@@ -95,14 +94,12 @@ ActiveRecord::Schema.define(version: 20160702135042) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "patronymic"
-    t.integer  "old_idi"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "chapters", force: true do |t|
     t.string   "title"
-    t.integer  "old_idi"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -228,26 +225,20 @@ ActiveRecord::Schema.define(version: 20160702135042) do
   create_table "reviews", force: true do |t|
     t.string   "title"
     t.integer  "chapter_id"
-    t.integer  "old_razdel_idi"
-    t.integer  "old_idi"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sections", force: true do |t|
-    t.string   "title",         default: "title is missing"
+    t.string   "title",      default: "title is missing"
     t.integer  "review_id"
-    t.integer  "old_idi"
-    t.integer  "old_obzor_idi"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subsections", force: true do |t|
-    t.string   "title",         default: "title is missing"
+    t.string   "title",      default: "title is missing"
     t.integer  "section_id"
-    t.integer  "old_idi"
-    t.integer  "old_punkt_idi"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

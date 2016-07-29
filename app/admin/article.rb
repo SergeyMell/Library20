@@ -1,6 +1,8 @@
 ActiveAdmin.register Article do
 
-  permit_params :title, chapter_ids: [], review_ids: [], section_ids: [], subsection_ids: []
+  permit_params :title, :author, :author_id, :year, :coauthors, :publication_data,
+                :journal, :journal_id,
+                chapter_ids: [], review_ids: [], section_ids: [], subsection_ids: []
 
   form do |f|
     f.inputs do

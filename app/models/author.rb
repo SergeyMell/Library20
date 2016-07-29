@@ -1,8 +1,7 @@
 class Author < ActiveRecord::Base
 
-  # Uncomment these validations in future
-  # validates_presence_of :last_name
-  # validates_uniqueness_of :last_name
+  validates_presence_of :last_name
+  validates_uniqueness_of :last_name
 
   has_many :articles
 
