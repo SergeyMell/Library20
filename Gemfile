@@ -41,6 +41,8 @@ gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 
 gem 'thin', '1.7.0'
 
+gem 'acts_as_api'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
