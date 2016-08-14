@@ -1,0 +1,5 @@
+<ul>
+  <% @bookmark_groups.each do |bookmark_group| %>
+      <%= render partial: 'active_admin/page/bookmark_group', locals: {bookmark_group: bookmark_group} %>
+  <% end %>
+</ul>
