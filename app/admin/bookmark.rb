@@ -1,5 +1,9 @@
 ActiveAdmin.register Bookmark do
 
+  menu :parent => 'Bookmarks'
+
+  permit_params :title, :link, :bookmark_group_id
+
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

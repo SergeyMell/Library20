@@ -1,5 +1,7 @@
 ActiveAdmin.register BookmarkGroup do
 
+  menu :parent => 'Bookmarks'
+
   permit_params :title, :bookmark_group_id
 
 # See permitted parameters documentation:

@@ -2,7 +2,7 @@ class Bookmark < ActiveRecord::Base
 
   acts_as_api
 
-  validates_presence_of :title, :link
+  validates_presence_of :title, :link, :bookmark_group
   validates_uniqueness_of :title
 
   belongs_to :bookmark_group
