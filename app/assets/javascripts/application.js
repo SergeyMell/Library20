@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require 'bootstrap-select'
+//= require 'jstree'
 //= require_tree .

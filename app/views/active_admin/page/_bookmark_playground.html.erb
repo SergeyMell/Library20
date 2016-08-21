@@ -1,5 +1,17 @@
-<ul>
-  <% @bookmark_groups.each do |bookmark_group| %>
-      <%= render partial: 'active_admin/page/bookmark_group', locals: {bookmark_group: bookmark_group} %>
-  <% end %>
-</ul>
+<div id="bookmarks-tree-container">
+  <ul >
+    <% @bookmark_groups.each do |bookmark_group| %>
+        <%= render partial: 'active_admin/page/bookmark_group', locals: {bookmark_group: bookmark_group} %>
+    <% end %>
+  </ul>
+</div>
+
+
+<script>
+  $(function() {
+    $('#bookmarks-tree-container').jstree({
+      "core" : { "check_callback" : true },
+      "plugins" : ["dnd", "contextmenu"]
+    });
+  });
+</script>
