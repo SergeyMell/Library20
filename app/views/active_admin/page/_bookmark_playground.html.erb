@@ -1,5 +1,5 @@
 <div id="bookmarks-tree-container">
-  <ul >
+  <ul>
     <% @bookmark_groups.each do |bookmark_group| %>
         <%= render partial: 'active_admin/page/bookmark_group', locals: {bookmark_group: bookmark_group} %>
     <% end %>
@@ -8,10 +8,39 @@
 
 
 <script>
-  $(function() {
+  $(function () {
     $('#bookmarks-tree-container').jstree({
-      "core" : { "check_callback" : true },
-      "plugins" : ["dnd", "contextmenu"]
+      "core": {"check_callback": true},
+      "plugins": ["dnd", "contextmenu"]
     });
   });
+  $('#bookmarks-tree-container').bind("move_node.jstree", function (e, data) {
+    console.log(e.target.getAttribute('data-id'));
+    console.log(data);
+  });
+
+  $('#bookmarks-tree-container').bind('create_node.jstree', function (node, ref) {
+//    alert('oncreate');
+  });
+
+  $('#bookmarks-tree-container').bind('rename_node.jstree', function (e, data) {
+    console.log(data);
+    rename(data['node']['li_attr']['data-id']);
+  });
+
+  $('#bookmarks-tree-container').bind('remove.jstree', function (node, ref) {
+//    alert('ondelete');
+  });
+
+  function rename(id) {
+    $.ajax({
+      method: 'PUT',
+      url: '/bookmark_groups/' + id,
+      data: {
+        bookmark_group: {
+          title: 'hello2'
+        }
+      }
+    });
+  }
 </script>
