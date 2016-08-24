@@ -12,7 +12,7 @@ class BookmarkGroup < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   def belong_either_user_or_bookmark_group
-    if !self.users.blank? && !self.bookmark_group.blank? || self.users.blank? && self.bookmark_group.blank?
+    if !self.users.blank? && !self.bookmark_group.blank?
       errors.add(:bookmark_group, 'Bookmark group should belong either to user or another bookmark group')
       errors.add(:users, 'Bookmark group should belong either to user or another bookmark group')
     end
