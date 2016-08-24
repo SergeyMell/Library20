@@ -1,4 +1,4 @@
-include BookmarkGroupsHelper
+include FoldersHelper
 
 ActiveAdmin.register_page 'Bookmark Playground' do
 
@@ -11,7 +11,7 @@ ActiveAdmin.register_page 'Bookmark Playground' do
   controller do
 
     def index
-      @bookmark_groups = get_bookmark_groups.as_api_response(:base)
+      @folders = get_folders.as_api_response(:base)
     end
 
   end

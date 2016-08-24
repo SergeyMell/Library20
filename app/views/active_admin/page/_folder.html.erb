@@ -1,0 +1,14 @@
+<li data-id="<%= folder[:id] %>">
+  <%= folder[:title] %>
+  <ul>
+    <% unless folder[:folders].blank? %>
+        <% folder[:folders].each do |folder| %>
+            <%= render partial: 'active_admin/page/folder', locals: {folder: folder} %>
+        <% end %>
+    <% end %>
+
+    <% folder[:bookmarks].each do |bookmark| %>
+        <li data-jstree='{"icon":"/assets/link-variant.png"}'><%= link_to bookmark[:title], bookmark[:link], target: '_blank' %></li>
+    <% end %>
+  </ul>
+</li>

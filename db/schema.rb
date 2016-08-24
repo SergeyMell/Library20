@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822163656) do
+ActiveRecord::Schema.define(version: 20160824140138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,30 +98,30 @@ ActiveRecord::Schema.define(version: 20160822163656) do
     t.datetime "updated_at"
   end
 
-  create_table "bookmark_groups", force: true do |t|
-    t.string   "title"
-    t.integer  "bookmark_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "bookmark_groups_users", force: true do |t|
-    t.integer "bookmark_group_id"
-    t.integer "user_id"
-  end
-
   create_table "bookmarks", force: true do |t|
     t.string   "title"
     t.text     "link"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "bookmark_group_id"
+    t.integer  "folder_id"
   end
 
   create_table "chapters", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "folders", force: true do |t|
+    t.string   "title"
+    t.integer  "folder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "folders_users", force: true do |t|
+    t.integer "folder_id"
+    t.integer "user_id"
   end
 
   create_table "journals", force: true do |t|

@@ -1,7 +1,7 @@
 <div id="bookmarks-tree-container">
   <ul>
-    <% @bookmark_groups.each do |bookmark_group| %>
-        <%= render partial: 'active_admin/page/bookmark_group', locals: {bookmark_group: bookmark_group} %>
+    <% @folders.each do |folder| %>
+        <%= render partial: 'active_admin/page/folder', locals: {folder: folder} %>
     <% end %>
   </ul>
 </div>
@@ -35,9 +35,9 @@
   function rename(id) {
     $.ajax({
       method: 'PUT',
-      url: '/bookmark_groups/' + id,
+      url: '/folders/' + id,
       data: {
-        bookmark_group: {
+        folder: {
           title: 'hello2'
         }
       }

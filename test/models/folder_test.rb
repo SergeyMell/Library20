@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BookmarkGroupsControllerTest < ActionController::TestCase
+class FolderTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

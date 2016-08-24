@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class BookmarkGroupsHelperTest < ActionView::TestCase
+class FolderHelperTest < ActionView::TestCase
 end

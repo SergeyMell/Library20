@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:login]
 
-  has_and_belongs_to_many :bookmark_groups
+  has_and_belongs_to_many :folders
 
   def email_required?
     false
@@ -17,9 +17,9 @@ class User < ActiveRecord::Base
     false
   end
 
-  api_accessible :bookmark_groups do |t|
+  api_accessible :folders do |t|
     t.add :id
     t.add :login
-    t.add :bookmark_groups, template: :base
+    t.add :folders, template: :base
   end
 end
