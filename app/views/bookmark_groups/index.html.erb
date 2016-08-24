@@ -1,0 +1,58 @@
+<div class="row" style="background-color: #EFEFEF;">
+  <div class="col-xs-6 text-left">
+    <%= link_to('Панель закладок', bookmark_groups_path) %> |
+    <%= link_to('Поиск статей', articles_path) %>
+  </div>
+  <div class="col-xs-6 text-right">
+    <%= "Вы зашли под учетной записью #{current_user.login}." %>
+    <strong>
+      <%= link_to('Выйти?', destroy_user_session_path, :method => :delete) %>
+    </strong>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 20px;">
+
+  <div class="col-xs-offset-1 col-xs-10">
+    <input id="search-field" type="text" placeholder="Найти закладки">
+  </div>
+
+  <div class="col-xs-offset-1 col-xs-10" id="bookmarks-tree-container">
+    <ul>
+      <% @bookmark_groups.each do |bookmark_group| %>
+          <%= render partial: 'active_admin/page/bookmark_group', locals: {bookmark_group: bookmark_group} %>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
+
+
+<script>
+  $(function () {
+    $('#bookmarks-tree-container').jstree({
+      "plugins" : [ "search" ],
+      "search": {
+
+        "case_insensitive": true,
+        "show_only_matches" : true
+      }
+    });
+
+    var to = false;
+    $('#search-field').keyup(function () {
+      if(to) { clearTimeout(to); }
+      to = setTimeout(function () {
+        var v = $('#search-field').val();
+        $('#bookmarks-tree-container').jstree(true).search(v);
+      }, 250);
+    });
+  });
+
+  $("#bookmarks-tree-container").jstree(true).bind("select_node.jstree", function (e, data) {
+    var href = data.node.a_attr.href;
+    if (href != '#') {
+      window.open(href, '_blank');
+    }
+  });
+</script>

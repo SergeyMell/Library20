@@ -8,7 +8,7 @@
     <% end %>
 
     <% bookmark_group[:bookmarks].each do |bookmark| %>
-        <li><%= link_to bookmark[:title], bookmark[:link], target: '_blank' %></li>
+        <li data-jstree='{"icon":"/assets/link-variant.png"}'><%= link_to bookmark[:title], bookmark[:link], target: '_blank' %></li>
     <% end %>
   </ul>
 </li>
