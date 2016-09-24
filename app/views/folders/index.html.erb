@@ -30,14 +30,16 @@
 
 <script>
   $(function () {
-    $('#bookmarks-tree-container').jstree({
-      "plugins" : [ "search" ],
-      "search": {
+    setTimeout(function() {
+      $('#bookmarks-tree-container').jstree({
+        "plugins" : [ "search" ],
+        "search": {
 
-        "case_insensitive": true,
-        "show_only_matches" : true
-      }
-    });
+          "case_insensitive": true,
+          "show_only_matches" : true
+        }
+      });
+    }, 100);
 
     var to = false;
     $('#search-field').keyup(function () {
