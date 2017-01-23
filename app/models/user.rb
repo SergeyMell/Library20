@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
 
   acts_as_api
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  ROLES = %w(author patient doctor student teacher intent fellow_student)
+
   devise :database_authenticatable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:login]
 
