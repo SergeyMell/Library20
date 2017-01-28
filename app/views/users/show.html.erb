@@ -1,26 +1,5 @@
 <%= render partial: 'common/header', locals: {active: 'home'} %>
-
-<div class="row" style="margin-top: 20px;">
-  <div class="col-xs-12 col-sm-4">
-    <%= image_tag(current_user.avatar, class: 'img-responsive img-rounded') %>
-  </div>
-  <div class="col-xs-12 col-sm-8">
-    <form>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Фамилия</label>
-        <%= text_field_tag(:last_name, current_user.last_name, class: 'form-control') %>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Имя</label>
-        <%= text_field_tag(:first_name, current_user.first_name, class: 'form-control') %>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputFile">Отчество</label>
-        <%= text_field_tag(:patronymic, current_user.patronymic, class: 'form-control') %>
-      </div>
-    </form>
-  </div>
-</div>
+<%= render partial: 'users/user_info' %>
 
 <div id="modal-container"></div>
 

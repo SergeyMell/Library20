@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @articles = Article.all
+    @articles = Article.includes(:article_files, :author).all
     @articles = @articles.joins(:chapters).where(chapters: {id: params[:chapter_id]}) unless params[:chapter_id].blank?
     @articles = @articles.joins(:reviews).where(reviews: {id: params[:review_id]}) unless params[:review_id].blank?
     @articles = @articles.joins(:sections).where(sections: {id: params[:section_id]}) unless params[:section_id].blank?
