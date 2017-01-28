@@ -4,12 +4,12 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">
-          <%= "#{@article.author.display_name}, #{@article.coauthors}"%>
+          <%= "#{[@article.author.display_name, @article.coauthors].compact.join(', ')}"%>
         </h4>
       </div>
       <div class="modal-body">
         <%= @article.title %> <br>
-        <%= "#{@article.journal.title}. - #{@article.publication_data}" %>
+        <%= "#{[@article.journal.try(:title), @article.publication_data].compact.join('. - ')}" %>
       </div>
       <div class="modal-footer">
         <% @article.article_files.each do |article_file| %>
