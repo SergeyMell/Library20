@@ -18,3 +18,4 @@
 public/uploads
 /config/database.yml
 dump.sh
+.DS_Store
