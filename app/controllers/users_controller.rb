@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @articles = Article.includes(:article_files, :author).all
+    @conferences = current_user.conferences
   end
 
   def update
