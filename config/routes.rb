@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'articles#index'
+  root 'users#show'
 
   # Example of regular route:
   get 'attach_files' => 'migration#attach_files'
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :articles
   resources :folders
+  resources :reports
 
   # Example resource route with options:
   #   resources :products do

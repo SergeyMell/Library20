@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   has_and_belongs_to_many :folders
+  has_many :reports
 
   def email_required?
     false

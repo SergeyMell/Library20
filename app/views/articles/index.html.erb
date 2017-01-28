@@ -3,18 +3,8 @@
     text-shadow: none;
   }
 </style>
-<div class="row" style="background-color: #EFEFEF;">
-  <div class="col-xs-6 text-left">
-    <%= link_to('Панель закладок', folders_path) %> |
-    <%= link_to('Поиск статей', articles_path) %>
-  </div>
-  <div class="col-xs-6 text-right">
-    <%= "Вы зашли под учетной записью #{current_user.login}." %>
-    <strong>
-      <%= link_to('Выйти?', destroy_user_session_path, :method => :delete) %>
-    </strong>
-  </div>
-</div>
+
+<%= render partial: 'common/header' %>
 
 <div id="modal-container">
 

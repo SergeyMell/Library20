@@ -1,5 +1,7 @@
 class Report < ActiveRecord::Base
 
+  belongs_to :user
+
   MONTHS = {
     january: 1,
     february: 2,
