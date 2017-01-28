@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
          :authentication_keys => [:login]
 
   has_and_belongs_to_many :folders
-  has_and_belongs_to_many :conferences
+  has_many :conferences_users, class_name: ConferencesUsers
+  has_many :conferences, through: :conferences_users
   has_many :reports
 
   has_attached_file :avatar,

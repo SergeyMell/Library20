@@ -6,5 +6,6 @@ class Conference < ActiveRecord::Base
 
   enum month: MONTHS
 
-  has_and_belongs_to_many :users
+  has_many :conferences_users, class_name: ConferencesUsers
+  has_many :users, through: :conferences_users
 end
