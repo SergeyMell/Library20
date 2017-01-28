@@ -1,5 +1,7 @@
 ActiveAdmin.register ArticleFile do
 
+  menu parent: 'Publications'
+
   permit_params :file, :article_id
 
   index do |t|
