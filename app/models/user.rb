@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :conferences, through: :conferences_users
   has_many :reports
 
+  has_many :rate_reports
+
   has_attached_file :avatar,
                     url: '/uploads/avatars/:id/:basename.:extension',
                     hash_secret: 'useravatars'
@@ -35,5 +37,10 @@ class User < ActiveRecord::Base
     t.add :last_name
     t.add :patronymic
     t.add lambda{|user| absolute_path(user.avatar.url) }, as: :avatar
+
+    t.add :docent_rate
+    t.add :assistant_rate
+    t.add :professor_rate
+    t.add :department_head_rate
   end
 end

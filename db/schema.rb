@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128192456) do
+ActiveRecord::Schema.define(version: 20170211195758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -260,6 +260,16 @@ ActiveRecord::Schema.define(version: 20170128192456) do
     t.datetime "updated_at"
   end
 
+  create_table "rate_reports", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "docent_rate",          precision: 2, scale: 2, default: 0.0
+    t.decimal  "assistant_rate",       precision: 2, scale: 2, default: 0.0
+    t.decimal  "professor_rate",       precision: 2, scale: 2, default: 0.0
+    t.decimal  "department_head_rate", precision: 2, scale: 2, default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reports", force: true do |t|
     t.integer  "user_id"
     t.integer  "year"
@@ -290,18 +300,18 @@ ActiveRecord::Schema.define(version: 20170128192456) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "login",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "login",                                          default: "",  null: false
+    t.string   "encrypted_password",                             default: "",  null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                                  default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "patronymic"
@@ -309,6 +319,10 @@ ActiveRecord::Schema.define(version: 20170128192456) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.decimal  "docent_rate",            precision: 2, scale: 2, default: 0.0
+    t.decimal  "assistant_rate",         precision: 2, scale: 2, default: 0.0
+    t.decimal  "professor_rate",         precision: 2, scale: 2, default: 0.0
+    t.decimal  "department_head_rate",   precision: 2, scale: 2, default: 0.0
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree

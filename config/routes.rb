@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get :show, on: :collection
       put :update, on: :collection
     end
+    resources :conferences
 
   end
 
