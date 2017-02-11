@@ -9,12 +9,14 @@ class Report < ActiveRecord::Base
   belongs_to :user
   has_one :rate_report
   has_one :hospital_report
+  has_one :mass_media_report
 
   validates_presence_of :year, :month
 
   def create_dependent_reports
     self.create_rate_report
     self.create_hospital_report
+    self.create_mass_media_report
   end
 
   api_accessible :full do |t|
@@ -23,10 +25,15 @@ class Report < ActiveRecord::Base
     t.add :month
     t.add :rate_report
     t.add :get_hospital_report, as: :hospital_report
+    t.add :get_mass_media_report, as: :mass_media_report
   end
 
   def get_hospital_report
     self.hospital_report || self.create_hospital_report
+  end
+
+  def get_mass_media_report
+    self.mass_media_report || self.create_mass_media_report
   end
 
 end

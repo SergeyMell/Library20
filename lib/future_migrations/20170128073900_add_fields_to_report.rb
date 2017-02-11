@@ -29,14 +29,14 @@ class AddFieldsToReport < ActiveRecord::Migration
 
     add_column :reports, :disease_history_reviews, :integer, default: 0
 
-    # TODO: Sanitarno prosv robota
-    add_column :reports, :mass_media_internet_participations, :integer, default: 0
-    add_column :reports, :mass_media_tv_participations, :integer, default: 0
-    add_column :reports, :mass_media_radio_participations, :integer, default: 0
-    add_column :reports, :mass_media_newspaper_publications, :integer, default: 0
-    add_column :reports, :mass_media_magazine_publications, :integer, default: 0
-    add_column :reports, :mass_media_brochure_publishing, :integer, default: 0
-    add_column :reports, :mass_media_discuss, :integer, default: 0
+    # # TODO: Sanitarno prosv robota
+    # add_column :reports, :mass_media_internet_participations, :integer, default: 0
+    # add_column :reports, :mass_media_tv_participations, :integer, default: 0
+    # add_column :reports, :mass_media_radio_participations, :integer, default: 0
+    # add_column :reports, :mass_media_newspaper_publications, :integer, default: 0
+    # add_column :reports, :mass_media_magazine_publications, :integer, default: 0
+    # add_column :reports, :mass_media_brochure_publishing, :integer, default: 0
+    # add_column :reports, :mass_media_discuss, :integer, default: 0
 
     add_column :reports, :moh_attestation_commissions, :integer, default: 0
     add_column :reports, :moh_treatment_qualities, :integer, default: 0

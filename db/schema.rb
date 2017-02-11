@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211213118) do
+ActiveRecord::Schema.define(version: 20170211221533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,19 @@ ActiveRecord::Schema.define(version: 20170211213118) do
 
   create_table "journals", force: true do |t|
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mass_media_reports", force: true do |t|
+    t.integer  "report_id"
+    t.integer  "number_of_internet_participations", default: 0
+    t.integer  "number_of_tv_participations",       default: 0
+    t.integer  "number_of_radio_participations",    default: 0
+    t.integer  "number_of_newspaper_publications",  default: 0
+    t.integer  "number_of_magazine_publications",   default: 0
+    t.integer  "number_of_brochures_published",     default: 0
+    t.integer  "number_of_discusses",               default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
