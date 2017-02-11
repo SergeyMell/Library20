@@ -29,6 +29,11 @@ Rails.application.routes.draw do
       get :show, on: :collection
       delete :destroy, on: :collection
     end
+    resources :users, only: [:index] do
+      get :show, on: :collection
+      put :update, on: :collection
+    end
+
   end
 
   # Example resource route with options:

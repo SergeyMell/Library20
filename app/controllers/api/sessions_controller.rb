@@ -1,7 +1,9 @@
 class Api::SessionsController < Api::BaseApiController
 
   def create
-    puts :create
+    user = User.find_by_login!(params[:login])
+    raise 'not found' unless user.valid_password?(params[:password])
+
     render nothing: :true, status: :ok
   end
 
@@ -10,7 +12,7 @@ class Api::SessionsController < Api::BaseApiController
   end
 
   def show
-    puts :show
+    render nothing: true, status: :ok
   end
 
 

@@ -1,3 +1,5 @@
+include Helper
+
 class User < ActiveRecord::Base
 
   acts_as_api
@@ -26,5 +28,12 @@ class User < ActiveRecord::Base
     t.add :id
     t.add :login
     t.add :folders, template: :base
+  end
+
+  api_accessible :user do |t|
+    t.add :first_name
+    t.add :last_name
+    t.add :patronymic
+    t.add lambda{|user| absolute_path(user.avatar.url) }, as: :avatar
   end
 end
