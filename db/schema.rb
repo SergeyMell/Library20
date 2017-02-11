@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170211195758) do
+ActiveRecord::Schema.define(version: 20170211213118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,19 @@ ActiveRecord::Schema.define(version: 20170211195758) do
   create_table "folders_users", force: true do |t|
     t.integer "folder_id"
     t.integer "user_id"
+  end
+
+  create_table "hospital_reports", force: true do |t|
+    t.integer  "report_id"
+    t.integer  "number_of_patients",             default: 0
+    t.integer  "number_of_bed_days",             default: 0
+    t.text     "patient_disease_histories"
+    t.integer  "number_of_consultations",        default: 0
+    t.text     "consultation_disease_histories"
+    t.integer  "number_of_miis",                 default: 0
+    t.integer  "number_of_rounds",               default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "journals", force: true do |t|

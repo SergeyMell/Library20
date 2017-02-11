@@ -5,15 +5,15 @@ class AddFieldsToReport < ActiveRecord::Migration
     # add_column :reports, :professor_rate, :decimal, precision: 2, scale: 2, default: 0
     # add_column :reports, :department_head_rate, :decimal, precision: 2, scale: 2, default: 0
 
-    add_column :reports, :patients, :integer, default: 0
-    add_column :reports, :bed_days, :integer, default: 0
-    add_column :reports, :patients_disease_histories, :text, limit: 16.megabytes - 1
-
-    add_column :reports, :hospital_consults, :integer, default: 0
-    add_column :reports, :hospital_disease_histories, :text, limit: 16.megabytes - 1
-    add_column :reports, :minimally_invasive_interventionы, :integer, default: 0
-
-    add_column :reports, :rounds_number, :integer, default: 0
+    # add_column :reports, :patients, :integer, default: 0
+    # add_column :reports, :bed_days, :integer, default: 0
+    # add_column :reports, :patients_disease_histories, :text, limit: 16.megabytes - 1
+    #
+    # add_column :reports, :hospital_consults, :integer, default: 0
+    # add_column :reports, :hospital_disease_histories, :text, limit: 16.megabytes - 1
+    # add_column :reports, :minimally_invasive_interventions, :integer, default: 0
+    #
+    # add_column :reports, :rounds_number, :integer, default: 0
 
     add_column :reports, :ambulance_consults, :integer, default: 0
     add_column :reports, :outer_ambulance_consults, :integer, default: 0

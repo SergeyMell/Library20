@@ -6,6 +6,6 @@ class Api::ReportsController < Api::BaseApiController
                   year: params[:year],
                   month: params[:month]
     )
-    render json: report
+    render json: report.as_api_response(:full)
   end
 end
