@@ -24,6 +24,13 @@ Rails.application.routes.draw do
   resources :folders
   resources :reports
 
+  namespace :api do
+    resources :sessions, only: [:create] do
+      get :show, on: :collection
+      delete :destroy, on: :collection
+    end
+  end
+
   # Example resource route with options:
   #   resources :products do
   #     member do
