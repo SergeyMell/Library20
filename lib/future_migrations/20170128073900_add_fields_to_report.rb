@@ -75,7 +75,6 @@ class AddFieldsToReport < ActiveRecord::Migration
     add_column :reports, :moh_tasks, :integer, default: 0
     add_column :reports, :hospital_shortcoming_removing, :integer, default: 0
     add_column :reports, :org_method_help, :integer, default: 0
-    add_column :reports, :org_method_help, :integer, default: 0
     add_column :reports, :cooperation_students, :integer, default: 0
     add_column :reports, :cooperation_interns, :integer, default: 0
     add_column :reports, :cooperation_doctors, :integer, default: 0
