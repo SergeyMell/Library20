@@ -34,6 +34,10 @@ Rails.application.routes.draw do
       put :update, on: :collection
     end
     resources :conferences
+    resources :reports, only: [] do
+      get :show, on: :collection
+      get :all, on: :collection
+    end
 
   end
 

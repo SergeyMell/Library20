@@ -261,7 +261,7 @@ ActiveRecord::Schema.define(version: 20170211195758) do
   end
 
   create_table "rate_reports", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "report_id"
     t.decimal  "docent_rate",          precision: 2, scale: 2, default: 0.0
     t.decimal  "assistant_rate",       precision: 2, scale: 2, default: 0.0
     t.decimal  "professor_rate",       precision: 2, scale: 2, default: 0.0

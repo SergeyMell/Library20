@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
   has_many :conferences, through: :conferences_users
   has_many :reports
 
-  has_many :rate_reports
-
   has_attached_file :avatar,
                     url: '/uploads/avatars/:id/:basename.:extension',
                     hash_secret: 'useravatars'

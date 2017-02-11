@@ -1,9 +1,9 @@
 class AddFieldsToReport < ActiveRecord::Migration
   def change
-    add_column :reports, :docent_rate, :decimal, precision: 2, scale: 2, default: 0
-    add_column :reports, :assistant_rate, :decimal, precision: 2, scale: 2, default: 0
-    add_column :reports, :professor_rate, :decimal, precision: 2, scale: 2, default: 0
-    add_column :reports, :department_head_rate, :decimal, precision: 2, scale: 2, default: 0
+    # add_column :reports, :docent_rate, :decimal, precision: 2, scale: 2, default: 0
+    # add_column :reports, :assistant_rate, :decimal, precision: 2, scale: 2, default: 0
+    # add_column :reports, :professor_rate, :decimal, precision: 2, scale: 2, default: 0
+    # add_column :reports, :department_head_rate, :decimal, precision: 2, scale: 2, default: 0
 
     add_column :reports, :patients, :integer, default: 0
     add_column :reports, :bed_days, :integer, default: 0
